@@ -20,7 +20,7 @@ jobs:
         run: mvn -DskipTests package
       - run: "ls -la target/"
       - run: "mv target/*.jar target/ecommerce.jar"
-      - uses: ncipollo/realese-action@v1
+      - uses: ncipollo/release-action@v1
         with:
           artifacts: "target/ecommere.jar"
           name: "My release"
