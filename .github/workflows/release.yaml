@@ -4,8 +4,10 @@ on:
     tags: 
      - "v*.*.*"
 jobs:
-  UnitTests:
+  Release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 11 for x64
@@ -17,3 +19,11 @@ jobs:
       - name: Compile it
         run: mvn -DskipTests package
       - run: "ls -la target/"
+      - run: "mv target/*.jar target/ecommerce.jar"
+      - uses: ncipollo/realese-action@v1
+        with:
+          artifacts: "target/ecommere.jar"
+          name: "My release"
+          body: |
+            ## My nice release
+            here we go
